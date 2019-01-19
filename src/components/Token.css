@@ -1,0 +1,24 @@
+.token-container {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+}
+
+.token {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: darkgrey;
+}
+
+.empty {
+    background-color: darkgrey;
+}
+
+.player-one {
+    background-color: darkred;
+}
+
+.player-two {
+    background-color: black;
+}
