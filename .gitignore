@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+
+# Built webpack files
+build/
+
+# Mac
+.DS_Store
+
+#Idea
+.idea/
+
+# Yarn
+yarn-error.log
