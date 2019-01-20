@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, withProps } from 'recompose';
+import { compose, withProps, lifecycle } from 'recompose';
 import Column from './Column';
+import fetchMove from '../actions/fetchMove';
 import styles from './GameBoard.css';
 
 const enhance = compose(
   connect(({ moves }) => ({ moves })),
+  lifecycle({
+    componentDidMount() {
+      console.log('yo');
+      fetchMove('[0]');
+    },
+  }),
   withProps(moves => ({
     moves,
   })),
