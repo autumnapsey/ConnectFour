@@ -1,4 +1,4 @@
-const moves = (state = [1, 2, 3], { type, column }) => {
+const moves = (state = [], { type, column }) => {
   switch (type) {
     case 'ADD_NEW_MOVE':
       return [...state, column];
