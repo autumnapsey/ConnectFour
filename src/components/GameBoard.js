@@ -9,7 +9,6 @@ const enhance = compose(
   connect(({ moves }) => ({ moves })),
   lifecycle({
     componentDidMount() {
-      console.log('yo');
       fetchMove('[0]');
     },
   }),
