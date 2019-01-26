@@ -1,6 +1,8 @@
-const moves = (state = [0, 0, 3, 2], { type, column }) => {
+const moves = (state = [], { type, column, computerMove }) => {
   switch (type) {
-    case 'ADD_NEW_MOVE':
+    case 'ADD_COMPUTER_MOVE':
+      return computerMove;
+    case 'ADD_PLAYER_MOVE':
       return [...state, column];
     default:
       return state;

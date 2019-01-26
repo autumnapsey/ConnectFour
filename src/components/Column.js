@@ -8,12 +8,16 @@ import styles from './Column.css';
 const enhance = compose(
   connect(({ turnOrderSelection }) => ({ turnOrderSelection }), {
     addMove: col => ({
-      type: 'ADD_NEW_MOVE',
+      type: 'ADD_PLAYER_MOVE',
       column: col,
     }),
   }),
   withHandlers({
-    addToken: () => 'click',
+    addToken: ({ addMove, turnOrderSelection }) => colNum => () => {
+      if (turnOrderSelection) {
+        addMove(colNum);
+      }
+    },
   }),
   withProps(({ colMoves }) => ({
     allColMoves: colMoves.concat(Array(4 - colMoves.length).fill('empty')),
@@ -29,7 +33,7 @@ const Column = ({
   addToken: Function,
   allColMoves: Array,
 }) => (
-  <div onClick={addToken} className={styles.column} role="presentation">
+  <div onClick={addToken(colNum)} className={styles.column} role="presentation">
     {colNum}
     {allColMoves.map((player, index) => (
       // eslint-disable-next-line react/no-array-index-key

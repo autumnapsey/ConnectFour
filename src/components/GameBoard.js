@@ -1,15 +1,34 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, withProps } from 'recompose';
+import { compose, withProps, lifecycle } from 'recompose';
 import Column from './Column';
 import styles from './GameBoard.css';
+import fetchMove from '../actions/fetchMove';
 
 const playerTurn = turnIndex =>
   turnIndex % 2 === 0 ? 'player-one' : 'player-two';
 
 const enhance = compose(
-  connect(({ moves, turnOrderSelection }) => ({ moves, turnOrderSelection })),
+  connect(({ moves, turnOrderSelection }) => ({ moves, turnOrderSelection }), {
+    addComputerMove: computerMove => ({
+      type: 'ADD_COMPUTER_MOVE',
+      computerMove,
+    }),
+  }),
+  lifecycle({
+    componentDidUpdate() {
+      if (
+        (this.props.turnOrderSelection === 1 &&
+          this.props.moves.length % 2 !== 0) ||
+        (this.props.turnOrderSelection === 2 &&
+          this.props.moves.length % 2 === 0)
+      ) {
+        const computerMove = fetchMove(this.props.moves.join(','));
+        computerMove.then(res => this.props.addComputerMove(res));
+      }
+    },
+  }),
   withProps(({ moves }) => ({
     boardMoves: Array(4)
       .fill([])
