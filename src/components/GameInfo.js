@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose, withHandlers } from 'recompose';
 import TurnStatus from './TurnStatus';
+import styles from './GameInfo.css';
 
 const enhance = compose(
   connect(({ turnOrderSelection }) => ({ turnOrderSelection }), {
@@ -24,15 +25,21 @@ const GameInfo = ({
   selectTurnOrder: Function,
   turnOrderSelection: number,
 }) => (
-  <div>
+  <div className={styles['game-info']}>
     {turnOrderSelection === 0 ? (
       <div>
-        Turn Order:
-        <button onClick={selectTurnOrder(1)}>Player 1</button>
-        <button onClick={selectTurnOrder(2)}>Player 2</button>
+        Choose your turn order:
+        <div>
+          <button className={styles.one} onClick={selectTurnOrder(1)}>
+            Player 1
+          </button>
+          <button className={styles.two} onClick={selectTurnOrder(2)}>
+            Player 2
+          </button>
+        </div>
       </div>
     ) : (
-      <span>You are Player {turnOrderSelection} </span>
+      <div>You are Player {turnOrderSelection}. </div>
     )}
     <TurnStatus />
   </div>

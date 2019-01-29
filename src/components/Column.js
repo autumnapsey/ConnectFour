@@ -6,15 +6,15 @@ import Token from './Token';
 import styles from './Column.css';
 
 const enhance = compose(
-  connect(({ turnOrderSelection }) => ({ turnOrderSelection }), {
+  connect(({ turnOrderSelection, moves }) => ({ turnOrderSelection, moves }), {
     addMove: col => ({
       type: 'ADD_PLAYER_MOVE',
       column: col,
     }),
   }),
   withHandlers({
-    addToken: ({ addMove, turnOrderSelection }) => colNum => () => {
-      if (turnOrderSelection) {
+    addToken: ({ addMove, turnOrderSelection, colMoves }) => colNum => () => {
+      if (turnOrderSelection && colMoves.length < 4) {
         addMove(colNum);
       }
     },

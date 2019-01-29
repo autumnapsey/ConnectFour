@@ -10,7 +10,8 @@ const App = () => (
     <Provider store={store}>
       <div className={styles.app}>
         <div className={styles.header}>
-          <h1 className={styles.title}>98point6 Drop Token</h1>
+          <span className={styles.title}>98point6</span>
+          <span className={styles.title}>Drop Token</span>
         </div>
         <GameInfo />
         <GameBoard />

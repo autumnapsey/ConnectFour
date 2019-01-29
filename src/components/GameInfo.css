@@ -1,0 +1,14 @@
+.game-info {
+    grid-area: game-info;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.one {
+    background-color: #eaa0a2;
+}
+
+.two {
+    background-color: #3a4664;
+}

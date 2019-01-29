@@ -2,12 +2,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose, branch, renderNothing, withHandlers } from 'recompose';
+import styles from './GameBoard.css';
 
 const endMessage = overMessage =>
   ({
     [true]: 'The game is over.',
-    [overMessage === 'player-one']: 'Player One is the winner!',
-    [overMessage === 'player-two']: 'Player Two is the winner!',
+    [overMessage === 'player-one']: 'Player 1 is the winner!',
+    [overMessage === 'player-two']: 'Player 2 is the winner!',
     [overMessage === 'draw']: 'The game is a draw! All moves have been taken.',
   }.true);
 
@@ -36,10 +37,13 @@ const GameOver = ({
   gameOver: string,
   resetGame: Function,
 }) => (
-  <div>
-    {endMessage(gameOver)}
-    <span>Game Over</span>
-    <button onClick={resetGame}>Play Again</button>
+  <div className={styles['gameOver-background']}>
+    <div className={styles.container}>
+      <div className={styles.message}>
+        <div>{endMessage(gameOver)}</div>
+        <button onClick={resetGame}>Play Again</button>
+      </div>
+    </div>
   </div>
 );
 

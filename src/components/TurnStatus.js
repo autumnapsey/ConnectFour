@@ -12,7 +12,7 @@ const enhance = compose(
 );
 
 const TurnStatus = ({ playerTurn }: { playerTurn: number }) => (
-  <div>It is Player {playerTurn}s turn.</div>
+  <div>Waiting for {playerTurn} to take their turn.</div>
 );
 
 export default enhance(TurnStatus);
