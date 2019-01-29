@@ -11,8 +11,8 @@ const enhance = compose(
   })),
 );
 
-const GameStatus = ({ playerTurn }: { playerTurn: number }) => (
+const TurnStatus = ({ playerTurn }: { playerTurn: number }) => (
   <div>It is Player {playerTurn}s turn.</div>
 );
 
-export default enhance(GameStatus);
+export default enhance(TurnStatus);

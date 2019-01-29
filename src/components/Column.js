@@ -34,7 +34,6 @@ const Column = ({
   allColMoves: Array,
 }) => (
   <div onClick={addToken(colNum)} className={styles.column} role="presentation">
-    {colNum}
     {allColMoves.map((player, index) => (
       // eslint-disable-next-line react/no-array-index-key
       <Token player={player} key={`${index}-${colNum}`} />

@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose, withHandlers } from 'recompose';
-import GameStatus from './GameStatus';
+import TurnStatus from './TurnStatus';
 
 const enhance = compose(
   connect(({ turnOrderSelection }) => ({ turnOrderSelection }), {
@@ -34,7 +34,7 @@ const GameInfo = ({
     ) : (
       <span>You are Player {turnOrderSelection} </span>
     )}
-    <GameStatus />
+    <TurnStatus />
   </div>
 );
 

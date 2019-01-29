@@ -4,6 +4,8 @@ const moves = (state = [], { type, column, computerMove }) => {
       return computerMove;
     case 'ADD_PLAYER_MOVE':
       return [...state, column];
+    case 'RESET_MOVES':
+      return [];
     default:
       return state;
   }

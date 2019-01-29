@@ -5,6 +5,7 @@ import { compose, withProps, lifecycle } from 'recompose';
 import Column from './Column';
 import styles from './GameBoard.css';
 import fetchMove from '../actions/fetchMove';
+import GameOver from './GameOver';
 
 const playerTurn = turnIndex =>
   turnIndex % 2 === 0 ? 'player-one' : 'player-two';
@@ -40,11 +41,59 @@ const enhance = compose(
                 .filter(move => typeof move === 'string')
             : [],
       ),
+    columnWin: board =>
+      board
+        .map(
+          col =>
+            // eslint-disable-next-line no-nested-ternary
+            col.length === 4
+              ? col.every(move => move === col[0]) ? col[0] : false
+              : false,
+        )
+        .find(winner => winner !== false),
+    diagonalAscendingWin: board =>
+      board.map((col, index) => col[index]).every(move => move === board[0][0])
+        ? board[0][0]
+        : false,
   })),
+  withProps(({ columnWin, diagonalAscendingWin, boardMoves }) => ({
+    rowWin: board =>
+      columnWin(board[0].map((col, i) => board.map(row => row[i]))),
+    diagonalDescendingWin: board =>
+      diagonalAscendingWin(board.reduce((acc, curr) => [curr, ...acc], [])),
+    gameDraw:
+      boardMoves.reduce((acc, cur) => [...acc, ...cur], []).length >= 16
+        ? 'draw'
+        : false,
+  })),
+  withProps(
+    ({
+      boardMoves,
+      columnWin,
+      diagonalAscendingWin,
+      rowWin,
+      diagonalDescendingWin,
+      gameDraw,
+    }) => ({
+      gameOver:
+        columnWin(boardMoves) ||
+        rowWin(boardMoves) ||
+        diagonalAscendingWin(boardMoves) ||
+        diagonalDescendingWin(boardMoves) ||
+        gameDraw,
+    }),
+  ),
 );
 
-const GameBoard = ({ boardMoves }: { boardMoves: Array }) => (
+const GameBoard = ({
+  boardMoves,
+  gameOver,
+}: {
+  boardMoves: Array,
+  gameOver: string,
+}) => (
   <div className={styles.board}>
+    <GameOver gameOver={gameOver} />
     {boardMoves.map((col, index) => (
       // eslint-disable-next-line react/no-array-index-key
       <Column colMoves={col} key={`col-${index}`} colNum={index} />
