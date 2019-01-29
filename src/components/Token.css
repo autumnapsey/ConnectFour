@@ -22,3 +22,27 @@
 .player-two {
     background-color: #3a4664;
 }
+
+
+@media only screen and (max-width: 679px) {
+    .token-container {
+        max-width: 125px;
+        max-height: 125px;
+        margin: 5px;
+    }
+}
+
+@media only screen and (max-width: 545px) {
+    .token-container {
+        max-width: 100px;
+        max-height: 100px;
+    }
+}
+
+@media only screen and (max-width: 435px) {
+    .token-container {
+        max-width: 85px;
+        max-height: 85px;
+        margin: 3px;
+    }
+}

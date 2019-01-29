@@ -12,3 +12,11 @@
 .two {
     background-color: #3a4664;
 }
+
+@media only screen and (max-width: 955px) {
+    .game-info {
+        min-height: 100px;
+        align-items: center;
+        justify-content: center;
+    }
+}

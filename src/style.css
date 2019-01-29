@@ -44,3 +44,13 @@ button {
     flex-direction: column;
     font-size: 48px;
 }
+
+@media only screen and (max-width: 955px) {
+    .app {
+        display: block;
+    }
+    .header {
+        align-items: center;
+        justify-content: center;
+    }
+}
