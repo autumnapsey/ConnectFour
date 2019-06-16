@@ -1,6 +1,6 @@
-# 98point6 Drop Token
+# Connect Four
 
-Here is my game of drop token for 98point6's take home assignment. I created it using React and Redux.
+Here is my game of Connect Four. I created it using React and Redux.
 
 # Get Started
 Read package.json for all scripts.
